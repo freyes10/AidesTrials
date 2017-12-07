@@ -17,14 +17,54 @@ cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
 #Instructions
 
 Three new preventative aides drugs were tested in clinical trials in 2015. The trial designs were modeled after the famous RV_144 Aides Trials in Tailand in 2009.  Analyze and report on the apparent effectiveness of the three different drugs. Does sex of the participant seem to be a factor for any of the drugs?
+#Results
 
+#Graphical Results
 
 # South Carolina
+#males
+```{r}
+ScarolinaM <- filter(Scarolina,sex=="M")
+barchartGC(~infected + group, data=ScarolinaM, type="percent")
+```
+
+
+#Females
+```{r}
+ScarolinaF <- filter(Scarolina,sex=="F")
+barchartGC(~infected + group, data=ScarolinaF, type="percent")
+```
+
+
+#both
+```{r}
+barchartGC(~infected + group, data=Scarolina, type="percent")
+```
 
 We will subset the data by sex to see if the drug is sex specific.
 
 
+
 # Central Africa
+
+#males
+```{r}
+cenAfricaM <- filter(cenAfrica,sex=="M")
+barchartGC(~infected + group, data=cenAfricaM, type="percent")
+```
+
+
+#Females
+```{r}
+cenAfricaF <- filter(cenAfrica,sex=="F")
+barchartGC(~infected + group, data=cenAfricaF, type="percent")
+```
+
+
+#Both
+```{r}
+barchartGC(~infected + group, data=cenAfrica, type="percent")
+```
 
 We will subset the data by sex to see if the drug is sex specific.
 
@@ -32,7 +72,50 @@ We will subset the data by sex to see if the drug is sex specific.
 
 # Korea
 
+#Males
+```{r}
+koreaM <- filter(korea,sex=="M")
+barchartGC(~infected + group, data=koreaM, type="percent")
+```
+
+
+#Females
+```{r}
+koreaF <- filter(korea,sex=="F")
+barchartGC(~infected + group, data=koreaF, type="percent")
+```
+
+
+#Both
+```{r}
+barchartGC(~infected + group, data=korea, type="percent")
+```
+
 We will subset the data by sex to see if the drug is sex specific.
+
+#Numerical Results
+
+#South Carolina
+
+#males
+```{r}
+ScarolinaM_table <- xtabs(~infected + group, data = ScarolinaM)
+rowPerc(ScarolinaM_table)
+```
+
+
+#Females
+```{r}
+ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
+rowPerc(ScarolinaF_table)
+```
+
+
+#Both
+```{r}
+Scarolina_table <- xtabs(~infected + group, data = Scarolina)
+rowPerc(Scarolina_table)
+```
 
 
 
