@@ -1,7 +1,7 @@
 ---
 title: "Aides Tests"
-author: "Dr K"
-date: "May 24, 2017"
+author: "Frankie Reyes"
+date: "December 6, 2017"
 output: html_document
 ---
 
@@ -29,6 +29,8 @@ barchartGC(~infected + group, data=ScarolinaM, type="percent")
 ```
 
 
+For this test males were divided into two groups, one group has aids and the other doesn't. For the first group the drug was bad it had a higher percentage of aids then the placebo. For the second group there wasn't really no difference.
+
 #Females
 ```{r}
 ScarolinaF <- filter(Scarolina,sex=="F")
@@ -36,10 +38,15 @@ barchartGC(~infected + group, data=ScarolinaF, type="percent")
 ```
 
 
-#both
+For this test Females were also divided into two groups, the first group were aids and the second group don't have aids, and for the first group the placebo had a higher percentage of aids than the drug. For the second group there wasn't no difference between each other.
+
+#Both
 ```{r}
 barchartGC(~infected + group, data=Scarolina, type="percent")
 ```
+
+
+For this test the drug was slightly effective for South Carolina over all.
 
 We will subset the data by sex to see if the drug is sex specific.
 
@@ -54,6 +61,8 @@ barchartGC(~infected + group, data=cenAfricaM, type="percent")
 ```
 
 
+For Central Africa the males drug percentage was slightly effective than the placebo and for the second group there was no difference between them.
+
 #Females
 ```{r}
 cenAfricaF <- filter(cenAfrica,sex=="F")
@@ -61,10 +70,15 @@ barchartGC(~infected + group, data=cenAfricaF, type="percent")
 ```
 
 
+For the females the placebo had a higher percentage rate then the drug. So the drug was effective. For the second group there was no difference.
+
 #Both
 ```{r}
 barchartGC(~infected + group, data=cenAfrica, type="percent")
 ```
+
+
+For the overall test the drug was effective, and there was no difference for the second group.
 
 We will subset the data by sex to see if the drug is sex specific.
 
@@ -79,6 +93,8 @@ barchartGC(~infected + group, data=koreaM, type="percent")
 ```
 
 
+For the males the drug was effective and for the second group the placebo was slightly different.
+
 #Females
 ```{r}
 koreaF <- filter(korea,sex=="F")
@@ -86,10 +102,15 @@ barchartGC(~infected + group, data=koreaF, type="percent")
 ```
 
 
+For the females, in the first group the drug is not effective. For the second group there was no difference at all.
+
 #Both
 ```{r}
 barchartGC(~infected + group, data=korea, type="percent")
 ```
+
+
+Overall for both male and females the drug was effective. But for the second group there was no difference.
 
 We will subset the data by sex to see if the drug is sex specific.
 
@@ -104,6 +125,8 @@ rowPerc(ScarolinaM_table)
 ```
 
 
+For this test the drug was not effective for the males because aids had 57.35 people with aids and the placebo only had 42.65. For the second group there was no difference.
+
 #Females
 ```{r}
 ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
@@ -111,11 +134,162 @@ rowPerc(ScarolinaF_table)
 ```
 
 
+For the females the drug was effective because there was only 38.83 people with aids that took the drug and 61.17 people with aids that took the placebo. And there was no difference for the second group.
+
 #Both
 ```{r}
 Scarolina_table <- xtabs(~infected + group, data = Scarolina)
 rowPerc(Scarolina_table)
 ```
+
+
+For overall percentage the drug was slightly effective because there was 49.37 people that had aids who took the drug and 50.63 people that had aids that took the placebo. For the second group there was no difference because there was only 50.04 people with aids that took the drug and 49.96 people that took placebo.
+
+#Central Africa
+
+#Males
+```{r}
+cenAfricaM_table <- xtabs(~infected + group, data = cenAfricaM)
+rowPerc(cenAfricaM_table)
+```
+
+
+For this test the drug was slightly effective because there were only 49.47 people with aids that took the drug and 50.53 people with aids that took the placebo. There was no difference for this test.
+
+#Females
+```{r}
+cenAfricaF_table <- xtabs(~infected + group, data = cenAfricaF)
+rowPerc(cenAfricaF_table)
+```
+
+
+For this test the drug was effective for the females because the percentage of people that took the drug was only 46.55 and the percentage for the people that took the placebo was 53.45. For the second group there was no difference between each other.
+
+#Both
+```{r}
+cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
+rowPerc(cenAfrica_table)
+```
+
+
+The overall test result was that the drug was effective because the percentage was 47.87 and for the placebo the overall percentage was 52.13. There was no differnce for the second group.
+
+
+#Korea
+
+#Males
+```{r}
+koreaM_table <- xtabs(~infected + group, data = koreaM)
+rowPerc(koreaM_table)
+```
+
+
+For this test the drug was effective for the males becuase there were only 32.68 people with aids and 67.32 people with aids that took the placebo. For the second group there was a slightly difference between each other.
+
+#Females
+```{r}
+koreaF_table <- xtabs(~infected + group, data = koreaF)
+rowPerc(koreaF_table)
+```
+
+
+For the females it wasn't effective because the drug had a higher percentage than the placebo. The drug percentage was 65.43 and the percentage for the placebo was 34.57.
+
+#Both
+```{r}
+korea_table <- xtabs(~infected + group, data= korea)
+rowPerc(korea_table)
+```
+
+
+The overall test results show that the drug was effective because the percentage for the drug was 44.02 and the percentage for the placebo was 55.98. There was no difference for the second group.
+
+#Inferentials Results
+
+#south Carolina
+
+#Males
+```{r}
+chisqtestGC(ScarolinaM_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is above 0.05 so therefore we accept the null hypothesis and say the drug may be specific to males. There is no difference found in the group that did not have HIV.
+
+#Females
+```{r}
+chisqtestGC(ScarolinaF_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is below 0.05 so therefore we do not accept the null hypothesis and say the drug may not be specific to females. There is no difference found in the group that did not have HIV.
+
+#Both
+```{r}
+chisqtestGC(Scarolina_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is above 0.05 so therefore we accept the null hypothesis and say the drug may not be specific to the entire population. There is no difference found in the group that did not have HIV.
+
+#Central Africa
+
+#Males
+```{r}
+chisqtestGC(cenAfricaM_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is above 0.05 so therefore we accept the null hypothesis and say the drug may be specific to males. There is no difference found in the group that did not have HIV.
+
+#Females
+```{r}
+chisqtestGC(cenAfricaF_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is above 0.05 so therefore we accept the null hypothesis and say the drug may not be specific to females. There is no difference found in the group that did not have HIV.
+
+#Both
+```{r}
+chisqtestGC(cenAfrica_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is above 0.05 so therefore we accept the null hypothesis and say the drug may not be specific to enire population. There is no difference found in the group that did not have HIV.
+
+#Korea
+
+#Males
+```{r}
+chisqtestGC(koreaM_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is below 0.05 so therefore we accept the null hypothesis and say the drug may not be specific to males. There is no difference found in the group that did not have HIV.
+
+#Females
+```{r}
+chisqtestGC(koreaF_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is below 0.05 so therefore we accept the null hypothesis and say the drug may be specific to females. There is no difference found in the group that did not have HIV.
+
+#Both
+```{r}
+chisqtestGC(korea_table)
+```
+
+
+The null hypothesis says there will be no difference between the two groups. The p-value is above 0.05 so therefore we accept the null hypothesis and say the drug may be specific to entire population. There is no difference found in the group that did not have HIV.
+
+
+#Conclusion
+
+
+In conclusion, in South Carolina the drug was more effective for the female's than the males. In Central Africa the drug was not specific to sex and was effective for both groups. In Korea the drug was more effective for treating HIV in males than it was in females. I would recommened for the 32 year old female, to take the drug in South Carolina as it was more effective at treating HIV. I would recommened her not to take drugs that were used in Central Africa for females, there is still a high chance of it not working. It was not effective for the female's in Korea. For the male I would recommened him to take the drug from Korea and not the ones from South Carolina and Central Africa.
+
 
 
 
